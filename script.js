@@ -61,6 +61,9 @@ function userPrompts() {
     } else {
         false;
     }
-    return true;
+    if (!numbers, !lowerCaseCharacters, !upperCaseCharacters, !specialCharacters); {
+        alert("Must choose at least one option.");
+        return true;
 
+    }
 }
