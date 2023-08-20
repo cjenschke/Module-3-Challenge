@@ -1,73 +1,66 @@
-// Assignment code here
 
 
-// Get references to the #generate element
+var numberOfCharacters = 8;
+var userChoice = [];
+var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var lowerCaseCharacters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var upperCaseCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"];
+
 var generateBtn = document.querySelector("#generate");
+
+generateBtn.addEventListener("click", writePassword);
+
+function writePassword() {
+    var correctPrompts = userPrompts();
+    var passwordText = document.querySelector("#password");
+
+    if (correctPrompts) {
+        var newPassword = generatePassword();
+        passwordText.value = newPassword;
+    } else {
+        passwordText.value = "";
+    }
+}
 
 function generatePassword() {
     console.log("Button was clicked");
-
-    // 1. Prompt user for password criteria
-    //    Lowercase, uppercase, numbers, special characters
-    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    var lowerCaseLetters = ["abcdefghijklmnopqrstuvwxyz"];
-    var upperCaseLetters = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-    var specialCharacters = ["!@#$ %^&* ()"];
-
-    // 2. Validate the input
-    numberOfCharacters = prompt("Choose between 8-128 characters for you password.");
-
-    if (numberOfCharacters < 8 || numberOfCharacters > 128) {
-        return ("Wrong!  Choose between 8-128 characters.");
-    } else if (isNaN(numberOfCharacters)) {
-        return ("Numbers only, please.");
-    } else {
-        alert("You have chosen a " + numberOfCharacters + " character password.");
+    var password = "";
+    for (var i = 0; i < numberOfCharacters; i++) {
+        var randomCharacter = Math.floor(Math.random() * userChoice.length);
+        password = password + userChoice[randomCharacter];
     }
-
-    wantLowerCase = confirm("Do you want to use lowercase characters?");
-    if (wantLowerCase) {
-        var lowerCaseOn = alert("You have chosen to use lowercase charactoers.");
-    } else {
-        alert("You have chosen not to use lowercase characters.");
-    }
-
-    wantUpperCase = confirm("Do you want to use uppercase characters?");
-    if (wantUpperCase) {
-        alert("You have chosen to use uppercase characters.");
-    } else {
-        alert("You have chosen to not use uppercase characters.");
-    }
-
-    wantSpecialCharacters = confirm("Do you want to use special characters?");
-    if (wantSpecialCharacters) {
-        alert("You have chosen to use special characters");
-    } else {
-        alert("You have chosen not to use special characters.");
-    }
-
-    if (wantLowerCase === false && wantUpperCase === false && wantSpecialCharacters === false);
-    return ("Not going to work.  Pick at last one character type.");
-
-
-
-    // 3. Generate password based on criteria.
-
-
-
-
-    // 4. Display password on page
-    return "Generated password goes here";
+    return password;
 }
 
-// Write password to the #password input
-function writePassword() {
-    var password = generatePassword();//create generatePasswork fuction
-    var passwordText = document.querySelector("#password");
+function userPrompts() {
+    userChoice = [];
+    numberOfCharacters = parseInt(prompt("Choose between 8-128 characters for you password."));
 
-    passwordText.value = password;//displays on screen
+    if (isNaN(numberOfCharacters) || numberOfCharacters < 8 || numberOfCharacters > 128) {
+        alert("Wrong! Password must be between 8 - 128 characters.");
+        return false;
+    }
+    if (confirm("Do you want to use numbers?")) {
+        userChoice = userChoice.concat(numbers);
+    } else {
+        false;
+    }
+    if (confirm("Do you want to use lowercase characters?")) {
+        userChoice = userChoice.concat(lowerCaseCharacters);
+    } else {
+        false;
+    }
+    if (confirm("Do you want to use uppercase characters?")) {
+        userChoice = userChoice.concat(upperCaseCharacters);
+    } else {
+        false;
+    }
+    if (confirm("Do you want to use special characters?")) {
+        userChoice = userChoice.concat(specialCharacters);
+    } else {
+        false;
+    }
+    return true;
 
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
