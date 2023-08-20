@@ -60,10 +60,6 @@ function userPrompts() {
         userChoice = userChoice.concat(specialCharacters);
     } else {
         false;
-    }
-    if (!numbers, !lowerCaseCharacters, !upperCaseCharacters, !specialCharacters); {
-        alert("Must choose at least one option.");
-        return true;
+    } return true;
 
-    }
 }
