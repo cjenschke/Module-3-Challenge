@@ -8,13 +8,27 @@ function generatePassword() {
     console.log("Button was clicked");
 
     // 1. Prompt user for password criteria
-    //    password lenght 8 < 128
     //    Lowercase, uppercase, numbers, special characters
+    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var lowerCaseLetters = ["abcdefghijklmnopqrstuvwxyz"];
+    var upperCaseLetters = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+    var specialCharacters = ["!@#$ %^&* ()"];
+
     // 2. Validate the input
-    // 3. Display password on page
+    numberOfCharacters = prompt("Choose between 8-128 characters for you password.");
+    if (numberOfCharacters < 8 || numberOfCharacters > 128) {
+        return prompt("Wrong!  Choose between 8-128 characters.");
+    } else if (isNaN(numberOfCharacters)) {
+        return prompt("Numbers only, please.");
+    } else {
+        alert("You have chosen a " + numberOfCharacters + " character password.");
+    }
+    // 3. Generate password based on criteria.
 
 
 
+
+    // 4. Display password on page
     return "Generated password goes here";
 }
 
@@ -29,20 +43,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-//WHEN I click the button to generate a password
-//THEN I am presented with a series of prompts for password criteria
-////WHEN prompted for password criteria
-//THEN I select which criteria to include in the password
-//WHEN prompted for the length of the password
-//THEN I choose a length of at least 8 characters and no more than 128 characters
-//WHEN asked for character types to include in the password
-//THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-//WHEN I answer each prompt
-//THEN my input should be validated and at least one character type should be selected
-//WHEN all prompts are answered
-//THEN a password is generated that matches the selected criteria
-//WHEN the password is generated
-//THEN the password is either displayed in an alert or written to the page*//
