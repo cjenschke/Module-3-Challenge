@@ -32,8 +32,18 @@ function userPrompts() {
     if (confirm("Do you want to use special characters?")) {
         userChoice = userChoice.concat(specialCharacters);
     } else {
-        false;
+        alert("You must choose at least one type of character.");
     } return true;
+}
+
+function generatePassword() {
+    console.log("Button was clicked");
+    var password = "";
+    for (var i = 0; i < numberOfCharacters; i++) {
+        var randomCharacter = Math.floor(Math.random() * userChoice.length);
+        password = password + userChoice[randomCharacter];
+    }
+    return password;
 }
 
 function writePassword() {
@@ -46,16 +56,6 @@ function writePassword() {
     } else {
         passwordText.value = "";
     }
-}
-
-function generatePassword() {
-    console.log("Button was clicked");
-    var password = "";
-    for (var i = 0; i < numberOfCharacters; i++) {
-        var randomCharacter = Math.floor(Math.random() * userChoice.length);
-        password = password + userChoice[randomCharacter];
-    }
-    return password;
 }
 
 generateBtn.addEventListener("click", writePassword);
